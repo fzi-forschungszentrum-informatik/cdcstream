@@ -6,11 +6,12 @@ Implementation of Dino Ienco's algorithm CDCStream ([https://doi.org/10.1145/255
 ## Installation
 ### Requirements
 * Microsoft Visual C++ 14.0 or greater: [Download Build Tools from Microsoft](https://visualstudio.microsoft.com/de/visual-cpp-build-tools/) and restart subsequently
-* WEKA: [Download](https://waikato.github.io/weka-wiki/downloading_weka/), [GitHub](https://github.com/Waikato/weka-3.8/)
+* WEKA v3.8.6 or greater: [Download](https://waikato.github.io/weka-wiki/downloading_weka/), [GitHub](https://github.com/Waikato/weka-3.8/)
   * [Install WEKA via release](https://sourceforge.net/projects/weka/) or build it from scratch (requiring Java-related dependencies not mentioned here).
-  * Add [DilcaDistance](https://weka.sourceforge.io/packageMetaData/DilcaDistance/index.html) to WEKA:
+  * Add package [DilcaDistance](https://weka.sourceforge.io/packageMetaData/DilcaDistance/index.html) v1.0.2 or greater to WEKA:
     * Start WEKA GUI
     * Select `Tools` / `Package manager` and install the latest version of `DilcaDistance` (Dependency [fastCorrBasedFS](https://weka.sourceforge.io/packageMetaData/fastCorrBasedFS/index.html) should be installed after confirming prompted request.); It might be necessary to click the `Toggle load` button with `DilcaDistance` selected in order to get `Yes` in the Loaded column.
+  * TODO: Option 0 - use toString based transfer of matricesDilca vector as available in published version of DilcaDistance package
   * TODO: Option 1 - authors of WEKA include my code augmentation
   * TODO: Option 2 - Update using custom DilcaDistance jar
     * Build it TODO(add code file)
