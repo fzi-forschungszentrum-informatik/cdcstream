@@ -18,3 +18,6 @@ Implementation of Dino Ienco's algorithm CDCStream ([https://doi.org/10.1145/255
     * Move the resulting `.jar` to (overwrite the existing `.jar`)
       * Windows: `C:\Users\USERNAME\wekafiles\packages\DilcaDistance\DilcaDistance.jar` 
       * Linux-based systems: TODO(path Linux)
+
+## To Do
+* add tests
