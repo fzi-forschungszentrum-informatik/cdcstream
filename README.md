@@ -25,5 +25,15 @@ Implementation of Dino Ienco's algorithm CDCStream ([https://doi.org/10.1145/255
   python -m pip install cdcstream
   ```
 
+## License
+This software is licensed under the [MIT license](LICENSE).
+All dependencies are copyright to the respective authors and released under the licenses listed in [LICENSE_LIBRARIES](LICENSE_LIBRARIES) TODO.
+
+## Acknowledgements
+This software was developed at the FZI Research Center for Information Technology.
+The associated research was supported by the German Federal Ministry of Education and Research (grant number: 02K18D033) within the context of the project SEAMLESS.
+
+TODO(add logo) <img src="img/BMBF.jpg" alt="BMBF Logo" height="150" style="padding-right: 20px">
+
 ## To Do
 * add tests
