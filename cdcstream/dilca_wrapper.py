@@ -1,6 +1,7 @@
 
 from typing import Union
 import logging
+from math import sqrt
 
 import numpy as np
 import pandas as pd
@@ -9,7 +10,6 @@ import weka.filters as filters
 from weka.core.dataset import create_instances_from_matrices
 from weka.core.converters import load_any_file
 from weka.core.distances import DistanceFunction
-from weka.core.typeconv import jdouble_matrix_to_ndarray
 import javabridge
 
 import tools
@@ -20,6 +20,9 @@ logger = logging.getLogger(__name__)
 
 class DilcaDistance(DistanceFunction):
     """
+    Wrapper for the external Weka package DilcaDistance
+    https://svn.cms.waikato.ac.nz/svn/weka/trunk/packages/external/DilcaDistance/src/main/java/weka/core/DilcaDistance.java
+
     # to install package via python:
     import weka.core.packages as packages
     
@@ -80,7 +83,7 @@ class DilcaDistance(DistanceFunction):
         ind_form = ','.join(ind_form)
         self.attribute_indices = ind_form
 
-    def get_matrices_dilca(self, describe=False):
+    def get_matrices_dilca(self):
         """Fetches dilca matrices from Java and loads those as numpy arrays.
         Matrix computation is done on a batch of data instances set via self.instances.
 
@@ -92,15 +95,17 @@ class DilcaDistance(DistanceFunction):
         """
         if not self.instances:
             raise ValueError('No instances provided.')
-        if describe:
-            print('n_rows,n_cols\n-------------')
-            print(javabridge.call(self.jobject, "describeDilcaMatrices", "()Ljava/lang/String;"))
 
-        jobj_arr = javabridge.call(self.jobject, 'getMatricesDilca', '()[Ljava/lang/Object;')
-        jmatrices = javabridge.get_env().get_object_array_elements(jobj_arr)
+        # based on toString method implemented in DilcaDistance
+        # (version 1.0.2, https://weka.sourceforge.io/packageMetaData/DilcaDistance/1.0.2.html)
+        arr_list = self.__str__().split('\n\n\n')[:-1]
         matrices_dilca = []
-        for jmat in jmatrices:
-            matrices_dilca.append(jdouble_matrix_to_ndarray(jmat))
+        for arr in arr_list:
+            mat_flat = np.fromstring(arr.replace('\n', ''), sep=' ')
+            n_rows = int(sqrt(mat_flat.shape[0]))
+            matrices_dilca.append(
+                mat_flat.reshape(n_rows, -1)
+            )
         return matrices_dilca
 
     def extract_summary(self):
@@ -109,7 +114,7 @@ class DilcaDistance(DistanceFunction):
         Returns:
             float: Dilca matrix summary value.
         """
-        matrices_dilca = self.get_matrices_dilca(describe=False)
+        matrices_dilca = self.get_matrices_dilca()
         n_matrices = len(matrices_dilca)  # corresponds to numAttributes
         attr_wise_summaries = []
         for m_idx, m in enumerate(matrices_dilca):
