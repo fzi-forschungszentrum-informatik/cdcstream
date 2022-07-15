@@ -19,5 +19,11 @@ Implementation of Dino Ienco's algorithm CDCStream ([https://doi.org/10.1145/255
       * Windows: `C:\Users\USERNAME\wekafiles\packages\DilcaDistance\DilcaDistance.jar` 
       * Linux-based systems: TODO(path Linux)
 
+### Setup this Package
+* TODO:(publish to PyPI) Use pip:
+  ```sh
+  python -m pip install cdcstream
+  ```
+
 ## To Do
 * add tests
