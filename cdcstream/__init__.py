@@ -4,5 +4,5 @@ __author__ = """Martin Trat"""
 __email__ = 'trat@fzi.de'
 __version__ = '0.1.0'
 
-from .cdcstream import CDCStream
+from .cdcstream import DriftDetector, CDCStream
 from .dilca_wrapper import DilcaDistance
