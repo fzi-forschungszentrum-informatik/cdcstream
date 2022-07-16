@@ -12,7 +12,7 @@ from weka.core.converters import load_any_file
 from weka.core.distances import DistanceFunction
 import javabridge
 
-import tools
+from . import tools
 
 
 logger = logging.getLogger(__name__)
