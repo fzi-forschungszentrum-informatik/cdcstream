@@ -49,7 +49,7 @@ def check_package_installed(package_name, package_version=None, raise_error=Fals
             logger.error(err_msg)
     return res
 
-def attempt_install_package(package_name):
+def attempt_install_package(package_name, defer_application_exit=False):
     logger.warning(f'An attempt to install package "{package_name}" is in progress.')
     packages.establish_cache()
     packages.refresh_cache()
@@ -61,10 +61,11 @@ def attempt_install_package(package_name):
         for pack in p:
             success.append(packages.install_package(pack.name))
         if all(success):
-            logger.warning(f'Successfully installed package(s) {p}. '
-                           'An application restart is necessary - exiting.')
-            manage_jvm_stop()
-            sys.exit(0)
+            logger.warning(f'Successfully installed package(s) {p}.')
+            if not defer_application_exit:
+                logger.warning('An application restart is necessary - exiting.')
+                manage_jvm_stop()
+                sys.exit(0)
         else:
             manage_jvm_stop()
             raise RuntimeError(f'Error installing package "{package_name}"')
