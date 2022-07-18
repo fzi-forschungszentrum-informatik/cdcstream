@@ -5,12 +5,11 @@ Implementation of Dino Ienco's algorithm CDCStream ([https://doi.org/10.1145/255
 
 ## Installation
 ### Requirements
-* Microsoft Visual C++ 14.0 or greater: [Download Build Tools from Microsoft](https://visualstudio.microsoft.com/de/visual-cpp-build-tools/) and restart subsequently
-* WEKA v3.8.6 or greater: [Download](https://waikato.github.io/weka-wiki/downloading_weka/), [GitHub](https://github.com/Waikato/weka-3.8/)
-  * [Install WEKA via release](https://sourceforge.net/projects/weka/) or build it from scratch (requiring Java-related dependencies not mentioned here).
+* Windows: Microsoft Visual C++ 14.0 or greater; [Download Build Tools from Microsoft](https://visualstudio.microsoft.com/de/visual-cpp-build-tools/) and restart subsequently
+* WEKA v3.8.6 or greater: [Installation](https://waikato.github.io/weka-wiki/downloading_weka/), [GitHub](https://github.com/Waikato/weka-3.8/)
 
 ### Setup this Package
-* TODO:(publish to PyPI) Use pip (**after** installing above-stated requirements):
+* TODO:(publish to PyPI) Use pip (**after** installing above-stated requirements!):
   ```sh
   python -m pip install cdcstream
   ```
