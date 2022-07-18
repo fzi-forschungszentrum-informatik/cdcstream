@@ -5,6 +5,7 @@ description = "Implementation of Ienco's algorithm CDCStream"
 authors = ["Martin Trat <trat@fzi.de>"]
 
 [tool.poetry.dependencies]
+packaging = "*"
 python = "3.9.*"
 numpy = "*"
 pandas = "*"
