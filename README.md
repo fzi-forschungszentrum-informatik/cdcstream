@@ -29,6 +29,7 @@ The associated research was supported by the German Federal Ministry of Educatio
 TODO(add logo) <img src="img/BMBF.jpg" alt="BMBF Logo" height="150" style="padding-right: 20px">
 
 ## To Do
+* add application example
 * add tests
 * evaluate suitability of alternative ways of matrix transfer from WEKA
   * ~~Option 1 - authors of WEKA include my code augmentation~~
