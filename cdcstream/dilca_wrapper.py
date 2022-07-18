@@ -41,21 +41,24 @@ class DilcaDistance(DistanceFunction):
     # or
     DD = from_commandline('weka.core.DilcaDistance -R 1-5 -D', classname='weka.core.distances.DistanceFunction')  
     # check result
-    DD.to_commandline()      
+    DD.to_commandline()
     """
-    def __init__(self, classname='weka.core.DilcaDistance', supervised=False, attribute_indices=None):
+
+    _weka_package_name = 'DilcaDistance'
+
+    def __init__(self, supervised=False, attribute_indices=None):
         """Instantiates DILCA Distance.
-        Per default, all attributes are used and unsupervised discretization is performed.
+        Per default, unsupervised discretization is performed.
 
         Args:
-            classname (str, optional): DILCA Distance class name. Defaults to 'weka.core.DilcaDistance'.
             supervised (bool, optional): Supervised discretization of numerical attributes (unsupervised if False). Defaults to False.
             attribue_indices (list or str, optional): List of attribute indices (int, 0-based) 
                 or str containing WEKA-style attribute indices to use (1-based). If None, alle attributes are used.
                 Defaults to None.
         """
         tools.manage_jvm_start()
-        _jobject = DistanceFunction.new_instance(classname)
+
+        _jobject = DistanceFunction.new_instance('weka.core.' + self._weka_package_name)
         self.enforce_type(_jobject, 'weka.core.DistanceFunction')
         super().__init__(jobject=_jobject, options=None)
         self.is_optionhandler = True  # forcefully...
