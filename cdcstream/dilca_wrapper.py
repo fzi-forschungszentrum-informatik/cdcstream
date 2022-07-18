@@ -45,6 +45,7 @@ class DilcaDistance(DistanceFunction):
     """
 
     _weka_package_name = 'DilcaDistance'
+    _weka_package_version_min = '1.0.2'
 
     def __init__(self, supervised=False, attribute_indices=None):
         """Instantiates DILCA Distance.
