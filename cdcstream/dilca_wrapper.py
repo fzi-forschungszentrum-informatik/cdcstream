@@ -10,6 +10,8 @@ import weka.filters as filters
 from weka.core.dataset import create_instances_from_matrices
 from weka.core.converters import load_any_file
 from weka.core.distances import DistanceFunction
+from weka.core.classes import get_non_public_field
+from weka.core.typeconv import jdouble_matrix_to_ndarray
 import javabridge
 
 from . import tools
@@ -87,12 +89,14 @@ class DilcaDistance(DistanceFunction):
         ind_form = ','.join(ind_form)
         self.attribute_indices = ind_form
 
-    def get_matrices_dilca(self):
+    def get_matrices_dilca(self, matrices_dilca_field_name='matricesDilca'):
         """Fetches dilca matrices from Java and loads those as numpy arrays.
         Matrix computation is done on a batch of data instances set via self.instances.
 
         Args:
             describe (bool, optional): Print a matrix description. Defaults to False.
+            matrices_dilca_field_name (str, optional): The name of the Java attribute holding the
+                result of Dilca Distance computation. Defaults to 'matricesDilca'.
 
         Returns:
             list: list of dilca matrices (numpy.ndarray each)
@@ -100,16 +104,30 @@ class DilcaDistance(DistanceFunction):
         if not self.instances:
             raise ValueError('No instances provided.')
 
-        # based on toString method implemented in DilcaDistance
-        # (version 1.0.2, https://weka.sourceforge.io/packageMetaData/DilcaDistance/1.0.2.html)
-        arr_list = self.__str__().split('\n\n\n')[:-1]
-        matrices_dilca = []
-        for arr in arr_list:
-            mat_flat = np.fromstring(arr.replace('\n', ''), sep=' ')
-            n_rows = int(sqrt(mat_flat.shape[0]))
-            matrices_dilca.append(
-                mat_flat.reshape(n_rows, -1)
+        try:
+            # based on https://github.com/fracpete/python-weka-wrapper3/commit/a8c86c99068ccf238d16f3acea09182280167223
+            # TODO: include python-weka-wrapper3 package instead of git, once next release done
+            jmatricesdilca = get_non_public_field(
+                jobject=self.jobject,
+                field=matrices_dilca_field_name
             )
+            jmatricesdilca = javabridge.get_collection_wrapper(jmatricesdilca)
+            matrices_dilca = []
+            for jmat in jmatricesdilca:
+                matrices_dilca.append(jdouble_matrix_to_ndarray(jmat))
+        except:  # fall back to:
+            logger.warning('Cannot calculate matrices_dilca based on the associated protected '
+                           'Java attribute - falling back to string-based approach.')
+            # based on toString method implemented in DilcaDistance
+            # (version 1.0.2, https://weka.sourceforge.io/packageMetaData/DilcaDistance/1.0.2.html)
+            arr_list = self.__str__().split('\n\n\n')[:-1]
+            matrices_dilca = []
+            for arr in arr_list:
+                mat_flat = np.fromstring(arr.replace('\n', ''), sep=' ')
+                n_rows = int(sqrt(mat_flat.shape[0]))
+                matrices_dilca.append(
+                    mat_flat.reshape(n_rows, -1)
+                )
         return matrices_dilca
 
     def extract_summary(self):
