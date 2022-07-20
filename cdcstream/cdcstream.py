@@ -44,18 +44,23 @@ class CDCStream(UnsupervisedDriftDetector):
         Args:
             factor_warn (float): Parameter for Chebychev's Inequality for issuing a drift warning.
                 Must be smaller than or equal to factor_change.
-            factor_change (float): Parameter for Chebychev's Inequality for signaling a detected drift.
-                Must be greater than or equal to factor_warn. In case of equality, warnings are treated as changes.
-            summary_extractor (Callable): Function for extracting a summary value from a batch of data.
-                Must accept as first parameter: data; as named parameter: supervised.
-            summary_extractor_args (dict): Other named parameters to pass to summary_extractor.
-            alert_callback (Callable): Function being called after each batch with an alert code of ALERT_NONE,
-                ALERT_WARN, ALERT_CHANGE. Must accept as arguments: alert_code: int, alert_msg: str.
-            factor_std_extr_forg (float, optional): Parameter implementing forgetting of standard deviation extrema (novel algorithm extension).
-                Value between 0 and 1. Larger values results in faster forgetting. Defaults to 0 (no forgetting).
-            cooldown_cycles (int, optional): Parameter implementing a cooldown mechanism (novel algorithm extension). Positive value or 0.
-                Passed value sets the number of cycles (passed batches) during which no warning/change evaluation is done after a change is detected.
-                Defaults to 0 (no cooldown).
+            factor_change (float): Parameter for Chebychev's Inequality for signaling a detected
+                drift. Must be greater than or equal to factor_warn. In case of equality, warnings
+                are treated as changes.
+            summary_extractor (Callable): Function for extracting a summary value from a batch of
+                data. Must accept as first parameter: data; as named parameter: supervised.
+            summary_extractor_args (dict): Other named parameters (apart from first parameter data
+                and named parameter supervised) to pass to summary_extractor.
+            alert_callback (Callable): Function being called after each batch with an alert code of
+                ALERT_NONE, ALERT_WARN, ALERT_CHANGE. Must accept as arguments: alert_code: int,
+                alert_msg: str.
+            factor_std_extr_forg (float, optional): Parameter implementing forgetting of standard
+                deviation extrema (novel algorithm extension). Value between 0 and 1. Larger values
+                results in faster forgetting. Defaults to 0 (no forgetting).
+            cooldown_cycles (int, optional): Parameter implementing a cooldown mechanism (novel
+                algorithm extension). Positive value or 0. Passed value sets the number of cycles
+                (passed batches) during which no warning/change evaluation is done after a change
+                is detected. Defaults to 0 (no cooldown).
         """
         super().__init__()
 
@@ -113,11 +118,10 @@ class CDCStream(UnsupervisedDriftDetector):
 
     def _cleanup_current_cycle(self) -> None:
         """Executes cycle finishing tasks.
-        In accordance with Ienco's algorithm, the batch history will be reset BEFORE a batch causing
-        a change being detected will be appended to it (- history now only reflects data from the "new
-        distribution").
-        The history lenght will, after the first cycle, never again fall below 1 (even after a change being
-        detected).
+        In accordance with Ienco's algorithm, the batch history will be reset BEFORE a batch
+        causing a change being detected will be appended to it (- history now only reflects data
+        from the "new distribution"). The history lenght will, after the first cycle, never again
+        fall below 1 (even after a change being detected).
         """
         if self.current_change:  # React to CHANGE
             self.reset_history()
@@ -138,10 +142,10 @@ class CDCStream(UnsupervisedDriftDetector):
 
     def _compute_history_statistics(self) -> None:
         """Computes statistical history metrics.
-        After the first cycle following initial start, a history mean will be calculated in each cycle (as
-        history length then always >= 1). After the first two cycles following initial start, also a history
-        standard deviation will be calculated in each cycle. Both, mean and standard deviation will also be
-        recalculated immediately after a change being detected.
+        After the first cycle following initial start, a history mean will be calculated in each
+        cycle (as history length then always >= 1). After the first two cycles following initial
+        start, also a history standard deviation will be calculated in each cycle. Both, mean and
+        standard deviation will also be recalculated immediately after a change being detected.
         """
         if len(self.history) == 0:
             return  # gather more batches, at least one summary statistic value necessary
@@ -167,11 +171,11 @@ class CDCStream(UnsupervisedDriftDetector):
 
     def _std_extrema_forgetting(self) -> None:
         """ Novel extension to Ienco's algorithm. Causes maximum and minimum standard deviation to
-        shrink and grow respectively by a specified factor in each cycle. 
-        Shrinking or growing stops as extrema cross each other (i.e. minimum becomes larger than maximum
-        or opposite scenario).
-        Shrinking or growing happens BEFORE extrema being potentially updated through new summary statistic value.
-        (This way, we do not apply forgetting directly after extrema are updated.)
+        shrink and grow respectively by a specified factor in each cycle.
+        Shrinking or growing stops as extrema cross each other (i.e. minimum becomes larger than
+        maximum or opposite scenario).
+        Shrinking or growing happens BEFORE extrema being potentially updated through new summary
+        statistic value. (This way, we do not apply forgetting directly after extrema are updated.)
         """
         if self.history_std_min is None or self.factor_std_extr_forg == 0:
             return
@@ -184,13 +188,14 @@ class CDCStream(UnsupervisedDriftDetector):
             self.history_std_max = pot_std_max
             
     def start_cooldown(self) -> None:
-        """Implements a change detection cooldown to prevent immediate change detections after an initial change was detected.
-        During cooldown_cycles cycles, no changes detections are being embraced and the history might "recover" itself
-        (fall below change detection threshold).
-        This causes a decrease in this detector's sensitivity and might be suitable for data resulting in highly volatile
-        summary statistic values.
-        It might especially mitigate the effect of history std being recalculated as a rather low value, with only one
-        summary statistic value being present in the history after a detected change (which caused a history reset).
+        """Implements a change detection cooldown to prevent immediate change detections after an
+        initial change was detected. During cooldown_cycles cycles, no changes detections are being
+        embraced and the history might "recover" itself (fall below change detection threshold).
+        This causes a decrease in this detector's sensitivity and might be suitable for data
+        resulting in highly volatile summary statistic values. It might especially mitigate the
+        effect of history std being recalculated as a rather low value, with only one summary
+        statistic value being present in the history after a detected change (which caused a history
+        reset).
         """
         self._cur_cooldown_cycles = self.cooldown_cycles
 
@@ -202,8 +207,9 @@ class CDCStream(UnsupervisedDriftDetector):
             (factor * self.history_std)
 
     def evaluate(self) -> None:
-        """Evaluates the occurence of drift based on Chebychev's Inequality. Is called in every cycle.
-        With attribute history_std being None (first two cycles after initial detector start), this step is skipped.
+        """Evaluates the occurence of drift based on Chebychev's Inequality. Is called in every
+        cycle. With attribute history_std being None (first two cycles after initial detector start),
+        this step is skipped.
         """
         if self.history_std is None:
             return
@@ -220,7 +226,7 @@ class CDCStream(UnsupervisedDriftDetector):
 
     def _alert(self) -> None:
         """Publishes a detected alert. Important to keep in mind is that the program will execute
-            all code inside the callback self._alert_callback before returning to self._cycle_routine!
+        all code inside the callback self._alert_callback before returning to self._cycle_routine!
         """
         if self.current_change:
             alert_code = self.ALERT_CHANGE
