@@ -92,7 +92,6 @@ class DilcaDistance(DistanceFunction):
         Matrix computation is done on a batch of data instances set via self.instances.
 
         Args:
-            describe (bool, optional): Print a matrix description. Defaults to False.
 
         Returns:
             list: list of dilca matrices (numpy.ndarray each)
