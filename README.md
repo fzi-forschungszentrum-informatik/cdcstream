@@ -30,13 +30,4 @@ The associated research was funded by the German Federal Ministry of Education a
 
 
 ## To Do
-* add application example
 * add tests
-* evaluate suitability of alternative ways of matrix transfer from WEKA
-  * ~~Option 1 - authors of WEKA include my code augmentation~~
-  * Option 2 - Upload extension of WEKA package DilcaDistance with my Java code augmentation
-  * Option 3 - Provide custom DilcaDistance jar in this repository
-    * Build it TODO(add code file)
-    * User instruction: Move the resulting `.jar` to (overwrite the existing `.jar`)
-      * Windows: `C:\Users\USERNAME\wekafiles\packages\DilcaDistance\DilcaDistance.jar` 
-      * Linux-based systems: TODO(path Linux)
