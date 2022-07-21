@@ -26,7 +26,7 @@ All dependencies are copyright to the respective authors and released under the 
 <img src="doc/bmbf_en.svg" alt="BMBF Logo" height="150">
 
 This software was developed at the FZI Research Center for Information Technology.
-The associated research was supported by the German Federal Ministry of Education and Research (grant number: 02K18D033) within the context of the project SEAMLESS.
+The associated research was funded by the German Federal Ministry of Education and Research (grant number: 02K18D033) within the context of the project SEAMLESS.
 
 
 ## To Do
