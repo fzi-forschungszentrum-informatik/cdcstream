@@ -55,8 +55,8 @@ class CDCStream(UnsupervisedDriftDetector):
                 ALERT_NONE, ALERT_WARN, ALERT_CHANGE. Must accept as arguments: alert_code: int,
                 alert_msg: str.
             factor_std_extr_forg (float, optional): Parameter implementing forgetting of standard
-                deviation extrema (novel algorithm extension). Value between 0 and 1. Larger values
-                results in faster forgetting. Defaults to 0 (no forgetting).
+                deviation extrema (novel algorithm extension; untested). Value between 0 and 1.
+                Larger values result in faster forgetting. Defaults to 0 (no forgetting).
             cooldown_cycles (int, optional): Parameter implementing a cooldown mechanism (novel
                 algorithm extension). Positive value or 0. Passed value sets the number of cycles
                 (passed batches) during which no warning/change evaluation is done after a change
