@@ -189,13 +189,12 @@ class CDCStream(UnsupervisedDriftDetector):
             
     def start_cooldown(self) -> None:
         """Implements a change detection cooldown to prevent immediate change detections after an
-        initial change was detected. During cooldown_cycles cycles, no changes detections are being
-        embraced and the history might "recover" itself (fall below change detection threshold).
-        This causes a decrease in this detector's sensitivity and might be suitable for data
-        resulting in highly volatile summary statistic values. It might especially mitigate the
-        effect of history std being recalculated as a rather low value, with only one summary
-        statistic value being present in the history after a detected change (which caused a history
-        reset).
+        initial change was detected. During cooldown_cycles cycles, no change detections are being
+        embraced and the history might recover itself. This causes a decrease in this detector's
+        sensitivity and might be suitable for data resulting in temporily highly volatile summary
+        statistic values. It might especially mitigate the effect of history std being recalculated
+        as a rather low value, with only one summary statistic value being present in the history
+        after a detected change (which caused a history reset).
         """
         self._cur_cooldown_cycles = self.cooldown_cycles
 
