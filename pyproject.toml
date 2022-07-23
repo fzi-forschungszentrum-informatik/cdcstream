@@ -2,7 +2,10 @@
 name = "cdcstream"
 version = "0.1.2"
 description = "Implementation of Ienco's algorithm CDCStream"
+readme = "DESCRIPTION.md"
 authors = ["Martin Trat <trat@fzi.de>"]
+homepage = "https://github.com/fzi-forschungszentrum-informatik/cdcstream"
+license = "MIT"
 
 [tool.poetry.dependencies]
 packaging = "*"
