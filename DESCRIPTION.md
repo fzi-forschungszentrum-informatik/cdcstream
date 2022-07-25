@@ -1,5 +1,6 @@
 Implementation of an augmented version of Dino Ienco's algorithm **CDCStream** (Change Detection in Categorical Evolving Data Streams) ([https://doi.org/10.1145/2554850.2554864](https://doi.org/10.1145/2554850.2554864)).
 
+Cite as TODO(Bibtex info).
 
 ## Acknowledgements
 This software was developed at the FZI Research Center for Information Technology.

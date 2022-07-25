@@ -5,7 +5,14 @@ description = "Implementation of Ienco's algorithm CDCStream"
 readme = "DESCRIPTION.md"
 authors = ["Martin Trat <trat@fzi.de>"]
 homepage = "https://github.com/fzi-forschungszentrum-informatik/cdcstream"
+repository = "https://github.com/fzi-forschungszentrum-informatik/cdcstream"
 license = "MIT"
+classifiers = [
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "License :: OSI Approved :: MIT",
+    "Programming Language :: Python :: 3",
+    "Development Status :: 3 - Alpha"
+]
 
 [tool.poetry.dependencies]
 packaging = "*"
