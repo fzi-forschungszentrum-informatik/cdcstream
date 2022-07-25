@@ -7,7 +7,10 @@ Cite as TODO(Bibtex info).
 ## Installation
 ### Requirements
 * Windows: Microsoft Visual C++ 14.0 or greater; [Download Build Tools from Microsoft](https://visualstudio.microsoft.com/de/visual-cpp-build-tools/) and restart subsequently
+  * without this requirement, **package installation fails** when attempting to install package javabridge
+  * installation of Core Features for C++ Build Tools, C++ 2019 Redistributable Update, Windows 10 SDK and MSVC v142 (or greater) should suffice
 * WEKA v3.8.6 or greater: [Installation](https://waikato.github.io/weka-wiki/downloading_weka/), [GitHub](https://github.com/Waikato/weka-3.8/)
+  * without this requirement, **code execution fails**
 
 ### Setup this Package
 * TODO:(publish to PyPI) Use pip (**after** installing above-stated requirements!):
