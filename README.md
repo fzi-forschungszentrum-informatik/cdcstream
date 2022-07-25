@@ -24,7 +24,7 @@ Cite as TODO(Bibtex info).
 
 ## License
 This software is licensed under the [MIT license](LICENSE).
-All dependencies are copyright to the respective authors and released under the licenses listed in [LICENSE_LIBRARIES](LICENSE_LIBRARIES) TODO.
+All dependencies are copyright to the respective authors and released under the respective licenses.
 
 ## Acknowledgements
 <img src="doc/bmbf_en.svg" alt="BMBF Logo" height="150">
