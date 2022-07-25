@@ -16,7 +16,7 @@ classifiers = [
 
 [tool.poetry.dependencies]
 packaging = "*"
-python = "3.9.*"
+python = ">=3.7"
 numpy = "*"
 pandas = "*"
 python-javabridge = "*"
