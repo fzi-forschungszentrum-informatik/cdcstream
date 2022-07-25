@@ -2,7 +2,7 @@
 
 __author__ = """Martin Trat"""
 __email__ = 'trat@fzi.de'
-__version__ = '0.1.2'
+__version__ = '0.1.3'
 
 import sys
 import logging
