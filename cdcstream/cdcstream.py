@@ -1,6 +1,6 @@
 
 __author__ = 'Martin Trat'
-__email__ ='trat@fzi.de'
+__email__ = 'trat@fzi.de'
 __license__ = 'MIT'
 
 

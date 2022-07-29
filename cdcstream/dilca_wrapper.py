@@ -1,7 +1,7 @@
 
-__author__ = "Martin Trat"
-__email__ ="trat@fzi.de"
-__license__ = "MIT"
+__author__ = 'Martin Trat'
+__email__ = 'trat@fzi.de'
+__license__ = 'MIT'
 
 
 from typing import Union
