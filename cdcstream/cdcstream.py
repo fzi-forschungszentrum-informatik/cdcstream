@@ -1,4 +1,9 @@
 
+__author__ = 'Martin Trat'
+__email__ ='trat@fzi.de'
+__license__ = 'MIT'
+
+
 from typing import Callable, Union
 
 import numpy as np

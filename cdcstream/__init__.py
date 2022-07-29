@@ -1,8 +1,10 @@
 """Top-level package for cdcstream."""
 
-__author__ = """Martin Trat"""
+__author__ = 'Martin Trat'
 __email__ = 'trat@fzi.de'
+__license__ = 'MIT'
 __version__ = '0.1.3'
+
 
 import sys
 import logging
