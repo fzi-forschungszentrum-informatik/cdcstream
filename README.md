@@ -23,8 +23,9 @@ Cite as TODO(Bibtex info).
   * Select `Tools` / `Package manager` and install the latest version of `DilcaDistance` (Dependency [fastCorrBasedFS](https://weka.sourceforge.io/packageMetaData/fastCorrBasedFS/index.html) should be installed after confirming prompted request.); It might be necessary to click the `Toggle load` button with `DilcaDistance` selected in order to get `Yes` in the Loaded column.
 
 ## License
-This software is licensed under the [MIT license](LICENSE).
+Code is copyright to the FZI Research Center for Information Technology and released under the [MIT license](LICENSE).
 All dependencies are copyright to the respective authors and released under the respective licenses.
+A copy of these licenses is provided in [LICENSE_LIBRARIES](LICENSE_LIBRARIES).
 
 ## Acknowledgements
 <img src="doc/bmbf_en.svg" alt="BMBF Logo" height="150">
