@@ -32,21 +32,21 @@ class DilcaDistance(DistanceFunction):
 
     # to install package via python:
     import weka.core.packages as packages
-    
+
     if not packages.is_installed('DilcaDistance'):
         packages.refresh_cache()
         packages.install_package('DilcaDistance')
-    
+
     # to instantiate (alternatively to this class-based approach, https://stackoverflow.com/a/66947489):
     from weka.core.classes import from_commandline
     import weka.core.distances as distances
 
     DD = distances.DistanceFunction(
-        jobject=from_commandline('weka.core.DilcaDistance -R 1-5 -D', 
+        jobject=from_commandline('weka.core.DilcaDistance -R 1-5 -D',
                                  classname='weka.core.distances.DistanceFunction').jobject,
                                  options=["-R", "1-5", "-D"])
     # or
-    DD = from_commandline('weka.core.DilcaDistance -R 1-5 -D', classname='weka.core.distances.DistanceFunction')  
+    DD = from_commandline('weka.core.DilcaDistance -R 1-5 -D', classname='weka.core.distances.DistanceFunction')
     # check result
     DD.to_commandline()
     """
@@ -60,7 +60,7 @@ class DilcaDistance(DistanceFunction):
 
         Args:
             supervised (bool, optional): Supervised discretization of numerical attributes (unsupervised if False). Defaults to False.
-            attribue_indices (list or str, optional): List of attribute indices (int, 0-based) 
+            attribue_indices (list or str, optional): List of attribute indices (int, 0-based)
                 or str containing WEKA-style attribute indices to use (1-based). If None, alle attributes are used.
                 Defaults to None.
         """
@@ -82,7 +82,7 @@ class DilcaDistance(DistanceFunction):
     def set_supervised_discretization(self, sup):
         # Java method: void setSupervisedDiscretization(boolean value)
         javabridge.call(self.jobject, 'setSupervisedDiscretization', '(Z)V', sup)
-        
+
     def set_formatted_attribute_indices(self, indices):
         """Accepts 0-based attribute indices, converts them to 1-based indices string
         and sets those.
@@ -149,7 +149,7 @@ class DilcaDistance(DistanceFunction):
                 raise ValueError(f'Dilca matrix associated to column {m_idx} has illegal shape.')
             norm_factor = m_cardi * (m_cardi - 1) * 0.5 if m_cardi > 1 else 1
             # feature with constant value results in m_cardi=1, upper triangular nonexistent i.e. =0 -> summary=0
-            m_triu_sq_sum_sqr = np.sqrt(np.sum(np.square(np.triu(m)), axis=None))  
+            m_triu_sq_sum_sqr = np.sqrt(np.sum(np.square(np.triu(m)), axis=None))
             # sum applied to all elements --> scalar
             attr_wise_summaries.append(m_triu_sq_sum_sqr / norm_factor)
         return np.sum(attr_wise_summaries) / n_matrices
@@ -168,13 +168,13 @@ class DilcaDistance(DistanceFunction):
             print(self.to_json())
         elif to_format == 'dict':
             print(self.to_dict())
-        
+
     def cleanup(self):
         tools.manage_jvm_stop()
 
 def dilca_workflow(data: pd.DataFrame, nominal_cols: Union[list,str], supervised: bool) -> float:
     """Executes a DilcaDistance-related workflow for a given batch of data resulting in its summary value.
-    
+
     Args:
         data (pd.DataFrame): The data batch.
         nominal_cols (list): A list of nominal columns.
@@ -212,7 +212,7 @@ def create_weka_dataset(
         weka.core.dataset.Instances: The WEKA dataset.
     """
     tools.manage_jvm_start()
-    
+
     ds_weka = create_instances_from_matrices(data.to_numpy(), name=name)
     nom_cols_indices = []
     nom_cols = []

@@ -9,7 +9,7 @@ Cite as TODO(Bibtex info).
 * WEKA v3.8.6 or greater, including OpenJDK 17: [Installation](https://waikato.github.io/weka-wiki/downloading_weka/), [GitHub](https://github.com/Waikato/weka-3.8/)
   * Without these requirements, **code execution fails**.
 * Build tools
-  * Ubuntu: Based on the [python-weka-wrapper3 documentation](https://fracpete.github.io/python-weka-wrapper3/install.html#ubuntu)), fulfill build requirements.
+  * Ubuntu: Based on the [python-weka-wrapper3 documentation](https://fracpete.github.io/python-weka-wrapper3/install.html#ubuntu), fulfill build requirements.
     ```sh
     sudo apt-get install build-essential python3-dev
     ```

@@ -17,7 +17,7 @@ class DriftDetector:
     ALERT_WARN_MSG = 'warning'
     ALERT_CHANGE = 2
     ALERT_CHANGE_MSG = 'change'
-    
+
     ALERT_COL_NAME = 'alert'
 
 class UnsupervisedDriftDetector(DriftDetector):
@@ -91,7 +91,7 @@ class CDCStream(UnsupervisedDriftDetector):
         self._log = []
 
         self.factor_std_extr_forg = factor_std_extr_forg
-        
+
         self.cooldown_cycles = cooldown_cycles
         self._cur_cooldown_cycles = 0
 
@@ -118,7 +118,7 @@ class CDCStream(UnsupervisedDriftDetector):
         self._compute_history_statistics()
         self.evaluate()
         self._update_log()
-        self._alert()  # AFTER _update_log 
+        self._alert()  # AFTER _update_log
         self._cleanup_current_cycle()
 
     def _cleanup_current_cycle(self) -> None:
@@ -156,7 +156,7 @@ class CDCStream(UnsupervisedDriftDetector):
             return  # gather more batches, at least one summary statistic value necessary
 
         # also calculate mean with only one value in history
-        self.history_mean = np.mean(self.history) 
+        self.history_mean = np.mean(self.history)
         _std = None
         if len(self.history) == 1:
             if self.history_std_min is None:
@@ -191,7 +191,7 @@ class CDCStream(UnsupervisedDriftDetector):
         else:
             self.history_std_min = pot_std_min
             self.history_std_max = pot_std_max
-            
+
     def start_cooldown(self) -> None:
         """Implements a change detection cooldown to prevent immediate change detections after an
         initial change was detected. During cooldown_cycles cycles, no change detections are being
@@ -221,11 +221,11 @@ class CDCStream(UnsupervisedDriftDetector):
         if self._cur_cooldown_cycles != 0:
             self._cur_cooldown_cycles -= 1
             return
-            
+
         if self._trigger(self.factor_change):  # CHANGE DETECTED
             self.current_change = True
             return  # do not trigger change AND warning!
-        elif self._trigger(self.factor_warn):  # WARNING DETECTED            
+        elif self._trigger(self.factor_warn):  # WARNING DETECTED
             self.current_warn = True
 
     def _alert(self) -> None:
@@ -262,7 +262,7 @@ class CDCStream(UnsupervisedDriftDetector):
             log_el = log_el + (self.ALERT_CHANGE,)
         else:
             log_el = log_el + (self.ALERT_NONE,)
-            
+
         self._log.append(log_el)
 
     @property
@@ -279,7 +279,7 @@ class CDCStream(UnsupervisedDriftDetector):
         log.columns = ['batch_summary_statistic', 'history_mean', 'history_std', self.ALERT_COL_NAME]
         log = log.astype({self.ALERT_COL_NAME: int})  # convert alert column to int
         if np.isnan(log.to_numpy()).any():
-            raise RuntimeError('Problems with log formatting.')        
+            raise RuntimeError('Problems with log formatting.')
         return log
 
 
