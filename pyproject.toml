@@ -1,15 +1,15 @@
 [tool.poetry]
 name = "cdcstream"
-version = "0.1.4"
+version = "0.1.5"
 description = "Implementation of Ienco's algorithm CDCStream"
 readme = "DESCRIPTION.md"
 authors = ["Martin Trat <trat@fzi.de>"]
 homepage = "https://github.com/fzi-forschungszentrum-informatik/cdcstream"
 repository = "https://github.com/fzi-forschungszentrum-informatik/cdcstream"
-license = "MIT"
+license = "GNU General Public License v3.0"
 classifiers = [
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
-    "License :: OSI Approved :: MIT",
+    "License :: OSI Approved :: GNU General Public License v3.0",
     "Programming Language :: Python :: 3",
     "Development Status :: 3 - Alpha"
 ]
