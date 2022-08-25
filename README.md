@@ -18,8 +18,8 @@ Cite as TODO(Bibtex info).
 * Python >=3.7
 * Python poetry
 
-### Setup this Package
-* TODO:(publish to PyPI) Use pip (**after** installing above-stated requirements!):
+### Setup
+* Use pip (**after** installing above-stated requirements!):
   ```sh
   python -m pip install cdcstream
   ```
@@ -41,4 +41,6 @@ The associated research was funded by the German Federal Ministry of Education a
 
 
 ## To Do
+* provide BibTex information
+* publish package to PyPI
 * add tests
