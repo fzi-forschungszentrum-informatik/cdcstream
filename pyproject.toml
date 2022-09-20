@@ -9,7 +9,7 @@ repository = "https://github.com/fzi-forschungszentrum-informatik/cdcstream"
 license = "GNU General Public License v3.0"
 classifiers = [
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
-    "License :: OSI Approved :: GNU General Public License v3.0",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
     "Programming Language :: Python :: 3",
     "Development Status :: 3 - Alpha"
 ]
