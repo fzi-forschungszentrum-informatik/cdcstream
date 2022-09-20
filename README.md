@@ -16,7 +16,6 @@ Cite as TODO(Bibtex info).
   * Windows: Microsoft Visual C++ 14.0 or greater. For this, [download Build Tools from Microsoft](https://visualstudio.microsoft.com/de/visual-cpp-build-tools/) and install those (installation of Core Features for C++ Build Tools, C++ 2019 Redistributable Update, Windows 10 SDK and MSVC v142 (or greater) should suffice; a subsequent restart might be necessary).
   * Without these requirements, attempting to **install package javabridge might fail**.
 * Python >=3.7
-* Python poetry
 
 ### Setup
 * Use pip (**after** installing above-stated requirements!):
@@ -28,6 +27,9 @@ Cite as TODO(Bibtex info).
   * Start WEKA GUI
   * Select `Tools` / `Package manager` and install the latest version of `DilcaDistance` (Dependency [fastCorrBasedFS](https://weka.sourceforge.io/packageMetaData/fastCorrBasedFS/index.html) should be installed after confirming prompted request.); It might be necessary to click the `Toggle load` button with `DilcaDistance` selected in order to get `Yes` in the Loaded column.
 
+## Development
+* Python poetry
+  * strangely, installation of python-javabridge fails with poetry versions > 1.1.15 (at the time of writing, newest poetry version is 1.2.1)
 ## License
 Code is copyright to the FZI Research Center for Information Technology and released under the [GNU General Public License v3.0](LICENSE).
 All dependencies are copyright to the respective authors and released under the respective licenses.
@@ -42,5 +44,5 @@ The associated research was funded by the German Federal Ministry of Education a
 
 ## To Do
 * provide BibTex information
-* publish package to PyPI
+* publish package to PyPI: as soon as python-weka-wrapper3 publishes 0.2.11
 * add tests
