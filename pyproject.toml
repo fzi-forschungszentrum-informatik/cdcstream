@@ -20,7 +20,7 @@ python = ">=3.7"
 numpy = "*"
 pandas = "*"
 python-javabridge = "*"
-python-weka-wrapper3 = {git = "https://github.com/fracpete/python-weka-wrapper3.git", rev = "a8c86c99068ccf238d16f3acea09182280167223"}
+python-weka-wrapper3 = "^0.2"
 
 [tool.poetry.dev-dependencies]
 

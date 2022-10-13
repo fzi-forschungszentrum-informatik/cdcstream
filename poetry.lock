@@ -68,12 +68,11 @@ numpy = ">=1.20.1"
 
 [[package]]
 name = "python-weka-wrapper3"
-version = "0.2.10"
-description = ""
+version = "0.2.11"
+description = "Python3 wrapper for the Weka Machine Learning Workbench"
 category = "main"
 optional = false
 python-versions = "*"
-develop = false
 
 [package.dependencies]
 numpy = "*"
@@ -81,14 +80,8 @@ packaging = "*"
 python-javabridge = ">=4.0.0"
 
 [package.extras]
-graphs = ["pillow", "pygraphviz"]
+graphs = ["lxml", "pillow", "pygraphviz"]
 plots = ["matplotlib"]
-
-[package.source]
-type = "git"
-url = "https://github.com/fracpete/python-weka-wrapper3.git"
-reference = "a8c86c99068ccf238d16f3acea09182280167223"
-resolved_reference = "a8c86c99068ccf238d16f3acea09182280167223"
 
 [[package]]
 name = "pytz"
@@ -109,7 +102,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.7"
-content-hash = "be3532fa1284765d466c72ee7f03cf7ca326efe4af6451eb62596dd724c74912"
+content-hash = "6a4b1590d8becebac00aaffa1505684cb631e0b0493f7f51b3118cd912ff6642"
 
 [metadata.files]
 numpy = [
@@ -183,7 +176,9 @@ python-dateutil = [
 python-javabridge = [
     {file = "python-javabridge-4.0.3.tar.gz", hash = "sha256:3fee0c235efcfe866f95695fdc0b6289eab2371043b32ff4ca6feff098de59c5"},
 ]
-python-weka-wrapper3 = []
+python-weka-wrapper3 = [
+    {file = "python-weka-wrapper3-0.2.11.tar.gz", hash = "sha256:83e8b6389eb69f0624f1c4487c56271bf3fa3fb5d3a3abf17c1217f7ab129c32"},
+]
 pytz = [
     {file = "pytz-2022.2.1-py2.py3-none-any.whl", hash = "sha256:220f481bdafa09c3955dfbdddb7b57780e9a94f5127e35456a48589b9e0c0197"},
     {file = "pytz-2022.2.1.tar.gz", hash = "sha256:cea221417204f2d1a2aa03ddae3e867921971d0d76f14d87abb4414415bbdcf5"},
