@@ -27,6 +27,47 @@ Cite as TODO(Bibtex info).
   * Start WEKA GUI
   * Select `Tools` / `Package manager` and install the latest version of `DilcaDistance` (Dependency [fastCorrBasedFS](https://weka.sourceforge.io/packageMetaData/fastCorrBasedFS/index.html) should be installed after confirming prompted request.); It might be necessary to click the `Toggle load` button with `DilcaDistance` selected in order to get `Yes` in the Loaded column.
 
+## Example
+
+```py
+import numpy as np
+import pandas as pd
+from cdcstream.dilca_wrapper import dilca_workflow
+from cdcstream import CDCStream, tools
+
+
+N_BATCHES = 50
+tools.manage_jvm_start()  # start a Java VM in order to integrate WEKA
+
+
+# instatiate drift detector
+def alert_cbck(alert_code, alert_msg):
+    if not alert_msg:
+        alert_msg = 'no msg'
+    print(f'{alert_msg} (code {alert_code})')
+c = CDCStream(
+    factor_warn=2.0, factor_change=3.0,
+    summary_extractor=dilca_workflow,
+    summary_extractor_args={'nominal_cols': 'all'},
+    alert_callback=alert_cbck,
+    factor_std_extr_forg=0,
+    cooldown_cycles=0
+)
+
+# create random data (will be interpreted as being nominal)
+batches = []
+for i in range(N_BATCHES):
+    batches.append(
+        pd.DataFrame(np.random.randint(1, 10, size=(10,5)))
+    )
+
+# employ created data as stream and feed it to drift detector
+for b in batches:
+    c.feed_new_batch(b)
+
+tools.manage_jvm_stop()  # cleanup
+```
+
 ## Development
 * Python poetry
   * strangely, installation of python-javabridge fails with poetry versions > 1.1.15 (at the time of writing, newest poetry version is 1.2.1)
