@@ -85,5 +85,4 @@ The associated research was funded by the German Federal Ministry of Education a
 
 ## To Do
 * provide BibTex information
-* publish package to PyPI: as soon as python-weka-wrapper3 publishes 0.2.11
 * add tests
