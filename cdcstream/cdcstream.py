@@ -42,9 +42,10 @@ class UnsupervisedDriftDetector(DriftDetector):
 class CDCStream(UnsupervisedDriftDetector):
 
     def __init__(self,
-                 factor_warn: float, factor_change: float,
                  summary_extractor: Callable, summary_extractor_args: dict,
                  alert_callback: Callable,
+                 factor_warn: float=2.0,
+                 factor_change: float=3.0,
                  factor_std_extr_forg: Union[float, int] =0,
                  cooldown_cycles: int =0) -> None:
         """Instantiates a CDCStream Drift Detector.
@@ -62,11 +63,6 @@ class CDCStream(UnsupervisedDriftDetector):
         }
 
         Args:
-            factor_warn (float): Parameter for Chebychev's Inequality for issuing a drift warning.
-                Must be smaller than or equal to factor_change.
-            factor_change (float): Parameter for Chebychev's Inequality for signaling a detected
-                drift. Must be greater than or equal to factor_warn. In case of equality, warnings
-                are treated as changes.
             summary_extractor (Callable): Function for extracting a summary value from a batch of
                 data. Must accept as first parameter: data; as named parameter: supervised.
             summary_extractor_args (dict): Other named parameters (apart from first parameter data
@@ -74,6 +70,11 @@ class CDCStream(UnsupervisedDriftDetector):
             alert_callback (Callable): Function being called after each batch with an alert code of
                 ALERT_NONE, ALERT_WARN, ALERT_CHANGE. Must accept as arguments: alert_code: int,
                 alert_msg: str.
+            factor_warn (float, optional): Parameter for Chebychev's Inequality for issuing a drift
+                warning. Must be smaller than or equal to factor_change. Defaults to 2.0.
+            factor_change (float, optional): Parameter for Chebychev's Inequality for signaling a
+                detected drift. Must be greater than or equal to factor_warn. In case of equality,
+                warnings are treated as changes. Defaults to 3.0.
             factor_std_extr_forg (float, optional): Parameter implementing forgetting of standard
                 deviation extrema (novel algorithm extension; untested). Value between 0 and 1.
                 Larger values result in faster forgetting. Defaults to 0 (no forgetting).
@@ -313,10 +314,11 @@ if __name__ == '__main__':
             alert_msg = 'no msg'
         print(f'{alert_msg} (code {alert_code})')
     c = CDCStream(
-        factor_warn=2.0, factor_change=3.0,
         summary_extractor=dilca_workflow,
         summary_extractor_args={'nominal_cols': 'all'},
         alert_callback=alert_cbck,
+        factor_warn=2.0,
+        factor_change=3.0,
         factor_std_extr_forg=0,
         cooldown_cycles=0
     )

@@ -46,10 +46,11 @@ def alert_cbck(alert_code, alert_msg):
         alert_msg = 'no msg'
     print(f'{alert_msg} (code {alert_code})')
 c = CDCStream(
-    factor_warn=2.0, factor_change=3.0,
     summary_extractor=dilca_workflow,
     summary_extractor_args={'nominal_cols': 'all'},
     alert_callback=alert_cbck,
+    factor_warn=2.0,
+    factor_change=3.0,
     factor_std_extr_forg=0,
     cooldown_cycles=0
 )
