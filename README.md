@@ -45,6 +45,7 @@ def alert_cbck(alert_code, alert_msg):
     if not alert_msg:
         alert_msg = 'no msg'
     print(f'{alert_msg} (code {alert_code})')
+
 c = CDCStream(
     alert_callback=alert_cbck,
     summary_extractor=dilca_workflow,
