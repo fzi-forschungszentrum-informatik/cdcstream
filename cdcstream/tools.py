@@ -1,6 +1,7 @@
 
 import sys
 import logging
+from typing import List
 
 import weka.core.jvm as jvm
 from weka.core import packages
@@ -31,6 +32,26 @@ def manage_jvm_detach():
 
 def manage_jvm_stop():
     jvm.stop()
+
+def manage_external_dependencies(weka_depends: List[object]) -> None:
+    """Checks whether external WEKA packages associated to passed interfaces are installed.
+
+    Args:
+        weka_depends (List[object]): The interfaces/classes.
+    """
+    manage_jvm_start()
+    any_installations = False
+    for dep in weka_depends:
+        installed = check_package_installed(
+            package_name=dep._weka_package_name, package_version=dep._weka_package_version_min,
+            raise_error=False)
+        if not installed:
+            any_installations = True
+            attempt_install_package(package_name=dep._weka_package_name, defer_application_exit=True)
+    if any_installations:
+        logger.warning('An application restart is necessary - exiting.')
+        manage_jvm_stop()
+        sys.exit(0)
 
 def check_package_installed(package_name, package_version=None, raise_error=False):
     res = packages.is_installed(package_name, version=None)

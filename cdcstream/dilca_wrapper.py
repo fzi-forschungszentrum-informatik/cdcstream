@@ -82,7 +82,10 @@ class DilcaDistance(DistanceFunction):
         tools.manage_jvm_start()
 
         _jobject = DistanceFunction.new_instance('weka.core.' + self._weka_package_name)
-        self.enforce_type(_jobject, 'weka.core.DistanceFunction')
+        try:
+            self.enforce_type(_jobject, 'weka.core.DistanceFunction')
+        except AssertionError:  # does not feel elegant...
+            tools.manage_external_dependencies(weka_depends=[self.__class__])
         super().__init__(jobject=_jobject, options=None)
         self.is_optionhandler = True  # forcefully...
 
