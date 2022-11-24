@@ -34,7 +34,7 @@ from weka.core.classes import get_non_public_field
 from weka.core.typeconv import jdouble_matrix_to_ndarray
 import javabridge
 
-from . import tools
+from cdcstream import tools
 
 
 logger = logging.getLogger(__name__)
