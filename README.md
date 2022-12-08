@@ -6,8 +6,13 @@ Cite as TODO(Bibtex info).
 
 ## Installation
 ### Requirements
-* WEKA v3.8.6 or greater, including OpenJDK 17: [Installation](https://waikato.github.io/weka-wiki/downloading_weka/), [GitHub](https://github.com/Waikato/weka-3.8/)
-  * Without these requirements, **code execution fails**.
+* WEKA v3.8.6 or greater: [Installation](https://waikato.github.io/weka-wiki/downloading_weka/), [GitHub](https://github.com/Waikato/weka-3.8/)
+  * Without this requirement, **code execution fails**.
+* Java
+  * Download and install Java 11 OpenJDK 11, e.g. from [RedHat](https://developers.redhat.com/products/openjdk/download) (more recent versions might work as well).
+  * Note that I experienced issues using Temurin (via adoptium.net).
+  * Make sure that the Java folder (path ending in `/bin`) is added to environment variable PATH.
+  * Without this requirement, attempting to **install package javabridge might fail**.
 * Build tools
   * Ubuntu: Based on the [python-weka-wrapper3 documentation](https://fracpete.github.io/python-weka-wrapper3/install.html#ubuntu), fulfill build requirements.
     ```sh
