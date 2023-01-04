@@ -82,6 +82,10 @@ tools.manage_jvm_stop()  # cleanup
     ```sh
     python -m poetry run pip install python-javabridge  # from outside the virtual environment
     ```
+  * afterwards, continue installation via poetry
+    ```sh
+    python -m poetry install
+    ```
 ## License
 Code is copyright to the FZI Research Center for Information Technology and released under the [GNU General Public License v3.0](LICENSE).
 All dependencies are copyright to the respective authors and released under the respective licenses.
