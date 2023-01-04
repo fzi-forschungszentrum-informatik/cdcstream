@@ -27,6 +27,7 @@ Cite as TODO(Bibtex info).
   ```sh
   python -m pip install cdcstream
   ```
+* @poetry users: trouble installing python-javabridge? --> See [Development section](#development)
 * First usage of the cdcstream package should automatically add all required WEKA packages.
   **If this does not succeed**: Manually add package [DilcaDistance](https://weka.sourceforge.io/packageMetaData/DilcaDistance/index.html) v1.0.2 or greater to WEKA:
   * Start WEKA GUI
@@ -77,7 +78,10 @@ tools.manage_jvm_stop()  # cleanup
 
 ## Development
 * Python poetry
-  * strangely, installation of python-javabridge fails with poetry versions > 1.1.15 (at the time of writing, newest poetry version is 1.2.1)
+  * strangely, installation of python-javabridge fails with poetry versions > 1.1.15 (at the time of writing, newest poetry version is 1.3.1); this might be related to [PEP 621](https://peps.python.org/pep-0621/) --> a workaround is to install python-javabridge via pip:
+    ```sh
+    python -m poetry run pip install python-javabridge  # from outside the virtual environment
+    ```
 ## License
 Code is copyright to the FZI Research Center for Information Technology and released under the [GNU General Public License v3.0](LICENSE).
 All dependencies are copyright to the respective authors and released under the respective licenses.
