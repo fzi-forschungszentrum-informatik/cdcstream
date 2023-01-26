@@ -54,6 +54,7 @@ class CDCStream(UnsupervisedDriftDetector):
         """Instantiates a CDCStream Drift Detector.
 
         BibTex:
+        ```
         @inproceedings{Ienco2014,
         doi = {10.1145/2554850.2554864},
         url = {https://doi.org/10.1145/2554850.2554864},
@@ -64,6 +65,7 @@ class CDCStream(UnsupervisedDriftDetector):
         title = {Change detection in categorical evolving data streams},
         booktitle = {Proceedings of the 29th Annual {ACM} Symposium on Applied Computing}
         }
+        ```
 
         Args:
             alert_callback (Callable, optional): Function being called after each batch with an
@@ -87,6 +89,22 @@ class CDCStream(UnsupervisedDriftDetector):
                 algorithm extension). Positive value or 0. Passed value sets the number of cycles
                 (passed batches) during which no warning/change evaluation is done after a change
                 is detected. Defaults to 0 (no cooldown).
+                Cite this extension as (BibTex):
+                ```
+                @techreport{TratBenderOvtcharova2023_1000155196,
+                    author       = {Trat, Martin and Bender, Janek and Ovtcharova, Jivka},
+                    year         = {2023},
+                    title        = {Sensitivity-Based Optimization of Unsupervised Drift Detection for Categorical Data Streams},
+                    doi          = {10.5445/IR/1000155196},
+                    institution  = {{Karlsruher Institut für Technologie (KIT)}},
+                    issn         = {2194-1629},
+                    series       = {KIT Scientific Working Papers},
+                    keywords     = {unsupervised conceptdriftdetection, data streammining, productiveartificialintelligence, categorical data processing},
+                    pagetotal    = {10},
+                    language     = {english},
+                    volume       = {208}
+                }
+                ```
         """
         super().__init__()
 
