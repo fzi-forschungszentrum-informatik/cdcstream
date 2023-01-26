@@ -1,6 +1,6 @@
 # Change Detection in Categorical Evolving Data Streams - CDCStream
 
-Cite this work as (BibTex):
+Paper available at [http://dx.doi.org/10.5445/IR/1000155196](http://dx.doi.org/10.5445/IR/1000155196), cite as (BibTex):
 ```
 @techreport{TratBenderOvtcharova2023_1000155196,
     author       = {Trat, Martin and Bender, Janek and Ovtcharova, Jivka},
@@ -16,7 +16,6 @@ Cite this work as (BibTex):
     volume       = {208}
 }
 ```
-
 
 Implementation of an augmented version of Dino Ienco's algorithm CDCStream ([https://doi.org/10.1145/2554850.2554864](https://doi.org/10.1145/2554850.2554864)).
 
