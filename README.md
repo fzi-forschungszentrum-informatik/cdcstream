@@ -26,7 +26,8 @@ Implementation of an augmented version of Dino Ienco's algorithm CDCStream ([htt
 * Java
   * Download and install Java 11 OpenJDK 11, e.g. from [RedHat](https://developers.redhat.com/products/openjdk/download) (more recent versions might work as well).
   * Note that I experienced issues using Temurin (via adoptium.net).
-  * Make sure that the Java folder (path ending in `/bin`) is added to environment variable PATH.
+  * Make sure that the Java folder (path including `/bin` at the end) is added to environment variable PATH.
+  * Some problems during python package installation can be solved by correctly setting the environment variable JAVA_HOME. Set it to point to the respective java folder (e.g. `/usr/lib/jvm/java-11-openjdk-amd64`) NOT including `/bin` or further components at the end.
   * Without this requirement, attempting to **install package javabridge might fail**.
 * Build tools
   * Ubuntu: Based on the [python-weka-wrapper3 documentation](https://fracpete.github.io/python-weka-wrapper3/install.html#ubuntu), fulfill build requirements.
