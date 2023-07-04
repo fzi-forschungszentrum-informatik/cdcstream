@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "cdcstream"
-version = "0.2.2"
+version = "0.2.3"
 description = "Implementation of Ienco's algorithm CDCStream"
 readme = "DESCRIPTION.md"
 authors = ["Martin Trat <trat@fzi.de>"]

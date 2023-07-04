@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 __author__ = 'Martin Trat'
 __email__ = 'trat@fzi.de'
 __license__ = 'GNU General Public License v3.0'
-__version__ = '0.2.2'
+__version__ = '0.2.3'
 
 
 from .cdcstream import DriftDetector, CDCStream
