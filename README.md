@@ -10,7 +10,7 @@ Paper available at [http://dx.doi.org/10.5445/IR/1000155196](http://dx.doi.org/1
     institution  = {{Karlsruher Institut für Technologie (KIT)}},
     issn         = {2194-1629},
     series       = {KIT Scientific Working Papers},
-    keywords     = {unsupervised conceptdriftdetection, data streammining, productiveartificialintelligence, categorical data processing},
+    keywords     = {unsupervised concept drift detection, data stream mining, productive artificial intelligence, categorical data processing},
     pagetotal    = {10},
     language     = {english},
     volume       = {208}
